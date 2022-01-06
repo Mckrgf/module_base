@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.MCKRGF'
+dependencies {
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.annotation:annotation:1.1.0@jar"
+
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
