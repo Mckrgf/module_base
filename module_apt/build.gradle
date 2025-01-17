@@ -1,4 +1,5 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
 
 group='com.github.MCKRGF'
@@ -8,8 +9,53 @@ dependencies {
     }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.annotation:annotation:1.1.0@jar"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+buildscript {
+    ext.kotlin_version = '1.3.72'
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+        maven { url 'https://developer.huawei.com/repo/'}
+        maven { url "https://jitpack.io" }
+        jcenter()
+        // 私有仓库地址
+        maven {
+            allowInsecureProtocol = true
+            url "http://lib.gcssloop.com:8081/repository/gcssloop-central/" }
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo1.maven.org/maven2' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+    maven { url 'https://developer.huawei.com/repo/'}
+    maven { url "https://jitpack.io" }
+    jcenter()
+    // 私有仓库地址
+    maven {
+        allowInsecureProtocol = true
+        url "http://lib.gcssloop.com:8081/repository/gcssloop-central/" }
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://repo1.maven.org/maven2' }
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
