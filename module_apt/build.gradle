@@ -3,23 +3,24 @@ apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
 
 group='com.github.MCKRGF'
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 dependencies {
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-    }
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.annotation:annotation:1.1.0@jar"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 buildscript {
-    ext.kotlin_version = '1.3.72'
+    ext.kotlin_version = '2.2.0'
     repositories {
         maven { url 'https://maven.aliyun.com/repository/google/' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+//        maven { url 'https://maven.aliyun.com/repository/jcenter/' }
         maven { url 'https://developer.huawei.com/repo/'}
         maven { url "https://jitpack.io" }
         jcenter()
@@ -37,7 +38,7 @@ buildscript {
 }
 repositories {
     maven { url 'https://maven.aliyun.com/repository/google/' }
-    maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+//    maven { url 'https://maven.aliyun.com/repository/jcenter/' }
     maven { url 'https://developer.huawei.com/repo/'}
     maven { url "https://jitpack.io" }
     jcenter()
@@ -51,11 +52,11 @@ repositories {
 }
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
 }
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
 }
