@@ -1,7 +1,10 @@
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
 
 group='com.github.MCKRGF'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.auto.service:auto-service:1.0-rc6'
